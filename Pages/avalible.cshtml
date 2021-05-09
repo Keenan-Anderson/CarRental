@@ -1,0 +1,66 @@
+﻿@page
+@model CarRental.Pages.Shared.avalibleModel
+
+@{
+    ViewData["Title"] = "avalible";
+}
+
+<h1>Cars avalible for hire</h1>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th></th>
+            <th>
+                @Html.DisplayNameFor(model => model.Car[0].Model)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Car[0].Doors)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Car[0].seats)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Car[0].automatic)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Car[0].Price)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model.Car)
+{
+
+    <tr>
+            <td>
+                @{var imagePath = item.ImageSrc;
+                @if (imagePath != "")
+                {
+            <img src="@imagePath" alt="Sample Image" width="300 px" />
+                    }
+                }
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Model)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Doors)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.seats)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.automatic)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Price)
+            </td>
+            <td>
+                <a asp-page="./bookings/Create" asp-route-id="@item.ID">Book Now</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
